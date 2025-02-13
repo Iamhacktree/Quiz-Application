@@ -1,0 +1,32 @@
+package com.Project.online_quiz.service;
+
+import java.net.http.HttpResponse;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+
+import com.Project.online_quiz.model.Question;
+import com.Project.online_quiz.model.Quiz;
+import com.Project.online_quiz.repository.QuestionRepository;
+import com.Project.online_quiz.repository.QuizRepository;
+
+public class QuizService {
+
+	@Autowired
+	QuizRepository quizRepository;
+	
+	@Autowired
+	QuestionRepository questionRepository;
+	
+	public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
+		List<Question> questions = questionRepository.findRandomQuestionsByCategory(category, numQ);
+		
+		Quiz quiz = new Quiz();
+		quiz.setTitle(title);
+		quiz.setQuestions(null);
+		return new ResponseEntity<>("Success", HttpStatus.OK);
+	}
+
+}

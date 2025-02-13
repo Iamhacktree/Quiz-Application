@@ -1,0 +1,11 @@
+package com.Project.online_quiz.repository;
+
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import com.Project.online_quiz.model.Quiz;
+
+@Repository
+public interface QuizRepository extends MongoRepository<Quiz, String>{
+
+}

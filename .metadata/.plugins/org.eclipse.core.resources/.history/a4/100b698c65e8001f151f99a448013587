@@ -1,0 +1,8 @@
+package com.Project.quiz_service.feign;
+
+import org.springframework.cloud.openfeign.FeignClient;
+
+@FeignClient("QUESTION_SERVICE")
+public interface QuizInterface {
+
+}

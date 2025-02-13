@@ -1,0 +1,20 @@
+package com.Project.online_quiz.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.mongodb.repository.Aggregation;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import com.Project.online_quiz.model.Question;
+
+@Repository
+public interface QuestionRepository extends MongoRepository<Question, String>{
+	Optional<Question> findByCategory(String category);
+
+	@Aggregation(pipeline = {
+	        "{ '$match': { 'category': ?0 } }",
+	        "{ '$sample': { 'size': ?1 } }"
+	 	})
+	Optional<Question> findRandomQuestionsByCategory(String category, int numQ);
+}

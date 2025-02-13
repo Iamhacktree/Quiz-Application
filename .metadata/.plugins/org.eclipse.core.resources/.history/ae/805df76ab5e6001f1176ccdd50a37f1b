@@ -1,0 +1,5 @@
+package com.Project.online_quiz.repository;
+
+public interface QuestionRepository {
+
+}

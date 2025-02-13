@@ -1,0 +1,20 @@
+package com.Project.online_quiz.repository;
+
+import java.util.List;
+
+import org.springframework.data.mongodb.repository.Aggregation;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.stereotype.Repository;
+
+import com.Project.online_quiz.model.Quiz;
+import com.Project.online_quiz.model.QuizQuestions;
+
+@Repository
+public interface QuizRepository extends MongoRepository<Quiz, String>{
+	@Aggregation(pipeline = {
+	        "{ '$match': { '_id': ?0 } }",
+	        "{ '$project': { 'questions': 1, '_id': 0 } }"
+	    })
+	    List<QuizQuestions> findQuestionsByQuizId(String quizId);
+
+}

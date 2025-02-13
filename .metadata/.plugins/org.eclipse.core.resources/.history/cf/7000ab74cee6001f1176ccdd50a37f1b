@@ -1,0 +1,5 @@
+package com.Project.online_quiz.model;
+
+public class QuizQuestions {
+
+}

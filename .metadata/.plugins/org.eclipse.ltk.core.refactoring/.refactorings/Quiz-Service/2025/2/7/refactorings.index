@@ -1,0 +1,12 @@
+1739261335229	Rename type 'OnlineQuiz1Application'
+1739261341857	Rename type 'OnlineQuiz1ApplicationTests'
+1739261459890	Rename package 'com.Project.online_quiz.controller'
+1739261474057	Rename package 'com.Project.online_quiz.model'
+1739261481606	Rename package 'com.Project.online_quiz.repository'
+1739261491580	Rename package 'com.Project.online_quiz.service'
+1739261501332	Delete element
+1739261511510	Delete element
+1739261518570	Delete element
+1739261666148	Delete element
+1739270501871	Rename package 'feign'
+1739271239793	Encapsulate field 'questionsID, ...'

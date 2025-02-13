@@ -1,0 +1,38 @@
+package com.Project.online_quiz.model;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "Quiz")
+public class Quiz {
+	@Id
+	private String id;
+	private String title;
+	private Optional<Question> questions;
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public Optional<Question> getQuestions() {
+		return questions;
+	}
+	public void setQuestions(Optional<Question> questions2) {
+		this.questions = questions2;
+	}
+	@Override
+	public String toString() {
+		return "Quiz [id=" + id + ", title=" + title + ", questions=" + questions + "]";
+	}
+	
+}

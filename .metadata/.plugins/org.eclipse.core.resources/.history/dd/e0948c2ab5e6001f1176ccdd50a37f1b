@@ -1,0 +1,24 @@
+package com.Project.online_quiz.controller;
+
+import java.net.Authenticator.RequestorType;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.Project.online_quiz.service.QuestionService;
+
+@Controller
+@RequestMapping("question")
+public class QuestionController {
+	
+	@Autowired
+	QuestionService questionService;
+	
+	@RequestMapping("allQuestions")
+	public ResponseEntity<List<Question>> getAllQuestion(){
+		
+	}
+}

@@ -1,0 +1,39 @@
+package com.Project.online_quiz.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.Project.online_quiz.model.Question;
+import com.Project.online_quiz.service.QuestionService;
+
+@Controller
+@RequestMapping("question")
+public class QuestionController {
+	
+	@Autowired
+	QuestionService questionService;
+	
+	@GetMapping("allQuestions")
+	public ResponseEntity<List<Question>> getAllQuestion(){
+		return questionService.getAllQuestion();
+	}
+	
+	@GetMapping("getByCategory/{category}")
+	public ResponseEntity<List<Question>> getByCategory(@PathVariable String category){
+		return questionService.getByCategory(category);
+	}
+	
+	@PostMapping("add")
+	public ResponseEntity<String> addQuestion(@RequestBody Question question){
+		return questionService.addQuestion(question);
+	}
+}

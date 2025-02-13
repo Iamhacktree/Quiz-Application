@@ -1,0 +1,52 @@
+package com.Project.quiz_service.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.Project.quiz_service.feign.QuizInterface;
+import com.Project.quiz_service.model.Question;
+import com.Project.quiz_service.model.Quiz;
+import com.Project.quiz_service.model.QuizQuestions;
+import com.Project.quiz_service.model.Response;
+import com.Project.quiz_service.repository.QuizRepository;
+
+@Service
+public class QuizService {
+
+	@Autowired
+	QuizRepository quizRepository;
+	
+	@Autowired
+	QuizInterface quizInterface;
+	
+	public ResponseEntity<String> createQuiz(String category, int numQ, String title) {
+//		List<Question> questions = questionRepository.findRandomQuestionsByCategory(category, numQ);
+		List<String> questions = quizInterface.getQuestionsForQuiz(category, numQ).getBody();
+		
+		Quiz quiz = new Quiz();
+		quiz.setTitle(title);
+		quiz.setQuestionsID(questions);
+		
+		quizRepository.save(quiz);
+		return new ResponseEntity<>("Success", HttpStatus.OK);
+	}
+
+	public ResponseEntity<List<QuizQuestions>> findQuestionsByQuizId(String id) {
+		Quiz quiz = quizRepository.findById(id).get();
+	    List<String> questionIds = quiz.getQuestionsID();
+	    ResponseEntity<List<QuizQuestions>> questions = quizInterface.getQuestionsFromId(questionIds);
+	    
+	    return questions;
+	}
+
+	public ResponseEntity<Integer> calculateResult(String id, List<Response> responses) {
+		ResponseEntity<Integer> right = quizInterface.getScore(responses);
+		return right;
+	}
+
+}

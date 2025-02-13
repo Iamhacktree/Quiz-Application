@@ -1,0 +1,9 @@
+spring.application.name=OnlineQuiz-1
+
+spring.main.allow-bean-definition-overriding=true
+
+spring.data.mongodb.uri=mongodb+srv://root:y90yxKaDbPveNP13@project.duaoi.mongodb.net/?retryWrites=true&w=majority&appName=Project
+spring.data.mongodb.database=Quiz
+#spring.mvc.view.prefix=/WEB-INF/views/
+#spring.mvc.view.suffix=.jsp
+logging.level.org.springframework.security=DEBUG

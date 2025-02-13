@@ -1,0 +1,36 @@
+package com.Project.question_service.service;
+
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+
+import com.Project.question_service.model.Question;
+import com.Project.question_service.repository.QuestionRepository;
+
+@Service
+public class QuestionService {
+
+	@Autowired
+	QuestionRepository questionRepository;
+	
+	public ResponseEntity<List<Question>> getAllQuestion() {
+		return new ResponseEntity<>(questionRepository.findAll(), HttpStatus.OK);
+	}
+	
+	public ResponseEntity<List<Question>> getByCategory(String category) {
+		return new ResponseEntity<>(questionRepository.findByCategory(category), HttpStatus.OK);
+	}
+	
+	public ResponseEntity<String> addQuestion(Question question) {
+		questionRepository.save(question);
+		return new ResponseEntity<>("Success", HttpStatus.CREATED);
+	}
+
+	public ResponseEntity<String> getQuestionsForQuiz(String categoryName, int numQuestions) {
+		//getting only id's of questions because in quiz do not need whole data it only id and using that id it will fetch data
+		List<String> questions = questionRepository.findRandomQuestionsByCategory(categoryName, numQuestions);
+		return null;
+	} 
+}
